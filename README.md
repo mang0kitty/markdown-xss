@@ -24,6 +24,5 @@ how to use the template, not to mention a store implementation and API client.
 ## Development
 ```bash
 npm install # Install everything you need
-npm run watch # Compile your TypeScript changes on the fly
 npm start # Start up Browser-Sync to automatically refresh when changes are made
 ```

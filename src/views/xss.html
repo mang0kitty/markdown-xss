@@ -1,0 +1,29 @@
+<div>
+  <h1 id="xssTitle">Markdown Renderer</h1>
+  <h5><em>Enter Markdown to be converted to rendered to text!</em></h5>
+  <el-row :gutter="40">
+    <el-col :span="12">
+      <el-row>
+        <el-col :span="24">
+          <el-input
+            v-model="input"
+            id="textArea"
+            type="textarea"
+            :rows="30"
+          ></el-input>
+        </el-col>
+      </el-row>
+
+      <el-row>
+        <el-col :span="24">
+          <el-button v-on:click="clear()">
+            Clear
+          </el-button>
+        </el-col>
+      </el-row>
+    </el-col>
+    <el-col :span="12">
+      <markdown :value="input"></markdown>
+    </el-col>
+  </el-row>
+</div>

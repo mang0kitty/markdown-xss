@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import {Route} from "vue-router";
-import {store} from "./store";
+import { Route } from "vue-router";
+import { store } from "./store";
 
 Vue.use(VueRouter);
 
@@ -12,7 +12,7 @@ Vue.use(VueRouter);
  * @param route The route that should have its properties populated
  */
 function routeProps(route: Route) {
-    return Object.assign({}, route.query, route.params);
+  return Object.assign({}, route.query, route.params);
 }
 
 /**
@@ -21,19 +21,41 @@ function routeProps(route: Route) {
  * @param module The path of the module that the component is defined in
  */
 function asyncComponent(module: string) {
-    return () => new Promise((resolve) => {
-        requirejs([module], function(component) {
-            resolve(component.default)
-        })
-    })
+  return () =>
+    new Promise(resolve => {
+      requirejs([module], function(component) {
+        resolve(component.default);
+      });
+    });
 }
 
 const routes = [
-    { name: 'home', path: "/", component: asyncComponent("views/home") }
-]
+  { name: "home", path: "/", component: asyncComponent("views/home") },
+  { name: "xss", path: "/xss", component: asyncComponent("views/xss") },
+  {
+    name: "sqlInjection",
+    path: "/injection",
+    component: asyncComponent("views/sqlInjection")
+  },
+  {
+    name: "cookieInjection",
+    path: "/cookies",
+    component: asyncComponent("views/cookieInjection")
+  },
+  {
+    name: "defaultCreds",
+    path: "/creds",
+    component: asyncComponent("views/defaultCreds")
+  },
+  {
+    name: "xssFilters",
+    path: "/filters",
+    component: asyncComponent("views/xssFilters")
+  }
+];
 
 export const router = new VueRouter({
-    routes,
-    mode: "history",
-    linkActiveClass: "active"
-})
+  routes,
+  mode: "history",
+  linkActiveClass: "active"
+});
